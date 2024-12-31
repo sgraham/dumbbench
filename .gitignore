@@ -1,3 +1,5 @@
 dumbbench*.*
 scratch/
 lua.exe
+luajit.exe
+lua51.dll

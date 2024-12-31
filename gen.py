@@ -28,14 +28,15 @@ int main() {
 ''')
 
 
-# Lua can only have 128k funcs per file, so split up into 10 chunks.
-# Not quite fair, since other languages will have a large symtab (I guess?) but
-# oh well.
-STEP = 125000
-for i in range(0, NUM_FUNCS, STEP):
-    with open(f'dumbbench{i//STEP}.lua', 'w', newline='\n') as f:
-        for name in ids[i:i+STEP]:
-            f.write(f'''\
+# Lua can only have 128k funcs per file (and luajit only 64k constants), so
+# split up into many chunks. Maybe not quite fair? I dunno.
+STEP = 31250
+with open('dumbbench.lua', 'w', newline='\n') as f2:
+    for i in range(0, NUM_FUNCS, STEP):
+        f2.write(f"dofile 'dumbbench{i//STEP}.lua'\n")
+        with open(f'dumbbench{i//STEP}.lua', 'w', newline='\n') as f:
+            for name in ids[i:i+STEP]:
+                f.write(f'''\
 -- This is the {name} function!
 function {name}()
     local x = 0
@@ -45,6 +46,7 @@ function {name}()
     return x
 end
 ''')
+
 
 
 with open('dumbbench.luv', 'w', newline='\n') as f:
