@@ -1,5 +1,15 @@
 @echo off
 
+:: wc -l dumbbench.js
+echo.
+echo.
+echo ... bun
+tim bun dumbbench.js
+echo.
+echo.
+echo ... node
+tim node dumbbench.js
+
 ::wc -l dumbbench*.lua
 echo.
 echo.

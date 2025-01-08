@@ -80,3 +80,16 @@ def {name}():
     return x
 
 ''')
+
+with open('dumbbench.js', 'w', newline='\n') as f:
+    for name in ids:
+        f.write(f'''\
+// This is the {name} function!
+function {name}() {{
+    var x = 0;
+    var z = "this is a string";
+    for (let i = 0; i < 5; step++)
+        x += i;
+    return x;
+}}
+''')
