@@ -93,3 +93,19 @@ function {name}() {{
     return x;
 }}
 ''')
+
+with open('dumbbench.rs', 'w', newline='\n') as f:
+    f.write('#![allow(unused)]\n\n')
+    for name in ids:
+        f.write(f'''\
+// This is the {name} function!
+fn {name}() -> i32 {{
+    let mut x = 0;
+    let _z = "this is a string";
+    for i in 0..5 {{
+        x += i; }}
+    return x;
+}}
+''')
+
+    f.write('fn main() {}\n')

@@ -1,5 +1,11 @@
 @echo off
 
+:: wc -l dumbbench.rs
+echo.
+echo.
+echo ... rust
+tim rustc -Z no-codegen dumbbench.rs
+
 :: wc -l dumbbench.js
 echo.
 echo.
