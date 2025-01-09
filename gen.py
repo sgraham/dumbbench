@@ -55,9 +55,9 @@ with open('dumbbench.luv', 'w', newline='\n') as f:
 # This is the {name} function!
 def int {name}():
     int x = 0
-    str z = "this is a string";
+    str z = "this is a string"
     for i in range(5):
-        x += i;
+        x += i
     return x
 
 ''')
@@ -95,7 +95,8 @@ function {name}() {{
 ''')
 
 with open('dumbbench.rs', 'w', newline='\n') as f:
-    f.write('#![allow(unused)]\n\n')
+    f.write('#![allow(unused)]\n')
+    f.write('#![allow(non_snake_case)]\n\n')
     for name in ids:
         f.write(f'''\
 // This is the {name} function!
